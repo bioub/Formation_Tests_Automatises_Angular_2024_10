@@ -11,7 +11,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-show.component.scss'],
 })
 export class UserShowComponent implements OnInit {
-  public user!: User;
+  public user: User | null = null;
 
   constructor(
     private route: ActivatedRoute,
