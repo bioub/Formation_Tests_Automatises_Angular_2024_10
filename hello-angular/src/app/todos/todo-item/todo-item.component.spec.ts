@@ -4,6 +4,7 @@ import { TodoItemComponent } from './todo-item.component';
 
 describe('TodoItemComponent', () => {
   let component: TodoItemComponent;
+  let nativeElement: HTMLElement;
   let fixture: ComponentFixture<TodoItemComponent>;
   let originalConsoleError!: any;
 
@@ -28,10 +29,19 @@ describe('TodoItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoItemComponent);
     component = fixture.componentInstance;
+    nativeElement = fixture.nativeElement;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+
+  it('should display input todo', () => {
+    component.todo = 'My Todo';
+    fixture.detectChanges();
+
+    expect(nativeElement.textContent).toContain('My Todo');
   });
 });

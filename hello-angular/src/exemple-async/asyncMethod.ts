@@ -6,5 +6,6 @@ export class AsyncClass {
     setTimeout(() => {
       this.foo = 'baz';
     }, 1000);
+
   }
 }

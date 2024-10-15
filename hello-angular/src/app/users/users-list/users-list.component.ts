@@ -17,25 +17,10 @@ export class UsersListComponent implements OnInit {
   public users$!: Observable<User[]>;
 
   constructor(
-    private route: ActivatedRoute,
-    private title: Title,
     private userService: UserService,
   ) {}
 
   ngOnInit() {
-    this.route.data.subscribe((data) => {
-      this.title.setTitle(data['title']);
-    });
-
-    this.refreshList();
-    this.userService.events
-      .pipe(
-        filter(e => e === 'user.write')
-      )
-      .subscribe(e => this.refreshList());
-  }
-
-  public refreshList() {
     this.users$ = this.userService.getList$();
   }
 

@@ -5,6 +5,7 @@ import { TodoFormComponent } from './todo-form.component';
 
 describe('TodoFormComponent', () => {
   let component: TodoFormComponent;
+  let nativeElement: HTMLElement;
   let fixture: ComponentFixture<TodoFormComponent>;
   let originalConsoleError!: any;
 
@@ -30,10 +31,28 @@ describe('TodoFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoFormComponent);
     component = fixture.componentInstance;
+    nativeElement = fixture.nativeElement;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display todo and emit on submit', async () => {
+    component.todo = 'My Todo';
+    fixture.detectChanges();
+
+    await fixture.whenStable();
+
+    expect(nativeElement.querySelector('input')?.value).toBe('My Todo');
+
+    const spy = jasmine.createSpy();
+    component.onAddTodo.subscribe(spy);
+
+    const formEl = nativeElement.querySelector('form');
+    formEl?.dispatchEvent(new SubmitEvent('submit', { bubbles: true }));
+
+    expect(spy).toHaveBeenCalledOnceWith('My Todo');
+  })
 });
