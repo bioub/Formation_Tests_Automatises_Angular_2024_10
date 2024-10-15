@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppComponent } from './app.component';
-import { MenuComponent } from './core/menu/menu.component';
+import { HomeComponent } from './home.component';
 
-describe('AppComponent', () => {
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
   let originalConsoleError!: any;
 
   beforeAll(() => {
@@ -21,14 +21,17 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent, MenuComponent],
-      imports: [RouterTestingModule.withRoutes([])],
+      declarations: [HomeComponent],
     }).compileComponents();
   });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
   it('should create', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 });

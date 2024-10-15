@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppComponent } from './app.component';
-import { MenuComponent } from './core/menu/menu.component';
+import { TodosComponent } from './todos.component';
 
-describe('AppComponent', () => {
+describe('TodosComponent', () => {
+  let component: TodosComponent;
+  let fixture: ComponentFixture<TodosComponent>;
   let originalConsoleError!: any;
 
   beforeAll(() => {
@@ -21,14 +21,17 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent, MenuComponent],
-      imports: [RouterTestingModule.withRoutes([])],
+      declarations: [TodosComponent],
     }).compileComponents();
   });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TodosComponent);
+    component = fixture.componentInstance;
+  });
+
   it('should create', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
   });
 });
